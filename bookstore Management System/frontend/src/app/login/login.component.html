@@ -1,0 +1,62 @@
+<div class="login-container">
+  <!-- Left side for bookstore theme -->
+  <div class="bookstore-theme">
+    <div class="theme-content">
+      <div class="book-shelf">
+        <div class="book"></div>
+        <div class="book"></div>
+        <div class="book"></div>
+      </div>
+      <h1>Welcome to Book Store</h1>
+      <p>Your Gateway to Knowledge</p>
+    </div>
+  </div>
+
+  <!-- Right side for form -->
+  <div class="login-form-container">
+    <div class="form-wrapper">
+      <div class="logo-container">
+        <i class="fas fa-book-reader"></i>
+        <h2>Book Store</h2>
+      </div>
+      
+      <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="login-form">
+        <h3>Sign In</h3>
+        
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" class="form-control" [(ngModel)]="user.email" name="email" placeholder="Email" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Password" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-user-tag"></i>
+            <select id="role" class="form-control" [(ngModel)]="user.role" name="role" required>
+              <option value="" disabled selected>Select Role</option>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="login-button">
+          <span>Login</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+
+        <div class="login-redirect">
+          <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

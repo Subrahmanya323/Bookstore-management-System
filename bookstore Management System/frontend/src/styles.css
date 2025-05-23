@@ -1,0 +1,28 @@
+/* Ensure that the html and body elements take up the full height of the page */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Apply Flexbox to the container and make the footer stick to the bottom */
+  .container-fluid {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content {
+    flex-grow: 1;  /* Make the content section take up remaining space */
+  }
+  
+  /* Footer styling */
+  footer {
+    background-color: #343a40;
+    color: #ffffff;
+  }
+  
+  footer p {
+    font-size: 14px;
+    margin: 0;
+  }
+  

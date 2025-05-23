@@ -1,0 +1,63 @@
+<div class="book-details-container">
+  <div class="book-details-card">
+    <div class="book-header">
+      <i class="fas fa-book-open"></i>
+      <h2>Book Details</h2>
+    </div>
+    
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <div class="info-content">
+          <label>Book Name</label>
+          <span>{{ book.name }}</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <div class="info-content">
+          <label>Author</label>
+          <span>{{ book.author }}</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">
+          <i class="fas fa-indian-rupee-sign"></i>
+        </div>
+        <div class="info-content">
+          <label>Price</label>
+          <span>{{ book.price | currency: 'INR':'symbol' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-actions">
+      <button (click)="navigateBack()" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        Back to List
+      </button>
+      <button *ngIf="isUser" (click)="buyBook()" class="buy-btn">
+        <i class="fas fa-shopping-cart"></i>
+        Buy Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Purchase Confirmation Dialog -->
+<div class="purchase-dialog" *ngIf="showPurchaseDialog">
+  <div class="dialog-content">
+    <h3>Confirm Purchase</h3>
+    <p>Are you sure you want to buy "{{ book.name }}" by {{ book.author }} for {{ book.price | currency:'INR' }}?</p>
+    <div class="dialog-actions">
+      <button (click)="confirmPurchase()" class="confirm-btn">Confirm</button>
+      <button (click)="cancelPurchase()" class="cancel-btn">Cancel</button>
+    </div>
+  </div>
+</div>

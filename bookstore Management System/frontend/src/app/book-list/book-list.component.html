@@ -1,0 +1,116 @@
+<div class="admin-dashboard">
+  <!-- Dashboard Header -->
+  <div class="dashboard-header">
+    <div class="header-content">
+      <h1><i class="fas fa-book"></i> Book Store Dashboard</h1>
+      <div class="header-actions">
+        <button (click)="addBook()" class="add-book-btn">
+          <i class="fas fa-plus"></i> Add New Book
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Stats -->
+  <div class="dashboard-stats">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="fas fa-book-open"></i>
+      </div>
+      <div class="stat-info">
+        <h3>{{ books.length }}</h3>
+        <p>Total Books</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="fas fa-user-tie"></i>
+      </div>
+      <div class="stat-info">
+        <h3>{{ getUniqueAuthors() }}</h3>
+        <p>Authors</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="fas fa-indian-rupee-sign"></i>
+      </div>
+      <div class="stat-info">
+        <h3>{{ getTotalValue() | currency:'INR' }}</h3>
+        <p>Total Value</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Books Table Section -->
+  <div class="books-section">
+    <div class="section-header">
+      <h2><i class="fas fa-list"></i> Book Inventory</h2>
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search books..." (input)="onSearch($event)">
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="!books.length && !errorMessage" class="loading-state">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Loading books...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="errorMessage" class="error-state">
+      <i class="fas fa-exclamation-circle"></i>
+      <p>{{ errorMessage }}</p>
+    </div>
+
+    <!-- Books Table -->
+    <div class="table-container" *ngIf="books.length">
+      <table class="book-table">
+        <thead>
+          <tr>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of filteredBooks">
+            <td>
+              <div class="book-info">
+                <i class="fas fa-book"></i>
+                <span>{{ book.name }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="author-info">
+                <i class="fas fa-user"></i>
+                <span>{{ book.author }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="price-info">
+                <i class="fas fa-indian-rupee-sign"></i>
+                <span>{{ book.price | currency:'INR' }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="action-buttons">
+                <button *ngIf="book.id !== undefined" (click)="bookDetails(book.id)" class="action-btn view-btn">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button *ngIf="book.id !== undefined" (click)="updateBook(book.id)" class="action-btn edit-btn">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button *ngIf="book.id !== undefined" (click)="deleteBook(book.id)" class="action-btn delete-btn">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

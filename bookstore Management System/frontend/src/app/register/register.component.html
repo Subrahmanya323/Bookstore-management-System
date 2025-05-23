@@ -1,0 +1,105 @@
+<div class="register-container">
+  <!-- Left side for bookstore theme -->
+  <div class="bookstore-theme">
+    <div class="theme-content">
+      <div class="book-shelf">
+        <div class="book"></div>
+        <div class="book"></div>
+        <div class="book"></div>
+      </div>
+      <h1>Join Our Book Community</h1>
+      <p>Start Your Reading Journey Today</p>
+    </div>
+  </div>
+
+  <!-- Right side for form -->
+  <div class="register-form-container">
+    <div class="form-wrapper">
+      <div class="logo-container">
+        <i class="fas fa-user-plus"></i>
+        <h2>Create Account</h2>
+      </div>
+      
+      <form (ngSubmit)="onRegister(registerForm)" #registerForm="ngForm" class="register-form">
+        <h3>Sign Up</h3>
+        
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="firstname" class="form-control" 
+                   [(ngModel)]="user.firstname" name="firstname" 
+                   placeholder="First Name" required 
+                   [class.is-invalid]="validationMessages.firstname" />
+          </div>
+          <div class="validation-message" *ngIf="validationMessages.firstname">
+            {{ validationMessages.firstname }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="lastname" class="form-control" 
+                   [(ngModel)]="user.lastname" name="lastname" 
+                   placeholder="Last Name" required 
+                   [class.is-invalid]="validationMessages.lastname" />
+          </div>
+          <div class="validation-message" *ngIf="validationMessages.lastname">
+            {{ validationMessages.lastname }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" class="form-control" 
+                   [(ngModel)]="user.email" name="email" 
+                   placeholder="Email" required 
+                   [class.is-invalid]="validationMessages.email" />
+          </div>
+          <div class="validation-message" *ngIf="validationMessages.email">
+            {{ validationMessages.email }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" class="form-control" 
+                   [(ngModel)]="user.password" name="password" 
+                   placeholder="Password" required 
+                   [class.is-invalid]="validationMessages.password" />
+          </div>
+          <div class="validation-message" *ngIf="validationMessages.password">
+            {{ validationMessages.password }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-user-tag"></i>
+            <select id="role" class="form-control" 
+                    [(ngModel)]="user.role" name="role" 
+                    required [class.is-invalid]="validationMessages.role">
+              <option value="" disabled selected>Select Role</option>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
+          </div>
+          <div class="validation-message" *ngIf="validationMessages.role">
+            {{ validationMessages.role }}
+          </div>
+        </div>
+
+        <button type="submit" class="register-button" [disabled]="!registerForm.valid">
+          <span>Register</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+
+        <div class="login-redirect">
+          <p>Already have an account? <a routerLink="/login">Login here</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
